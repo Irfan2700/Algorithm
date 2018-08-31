@@ -24,7 +24,7 @@ function stopwatch(){
     console.log("Stop Time : "+stop/1000);    
     var diff = utility.timeDifference(start,stop);
 
-    console.log("Time Difference : "+diff/1000);
+    console.log("Time Difference : "+diff);
 
 }
 stopwatch();
