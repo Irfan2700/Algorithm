@@ -1,4 +1,4 @@
-var readlineSync = require('readline-sync');;
+var readlineSync = require('readline-sync');
 var utility = require('../utility/utility.js');
 
 function search(){
@@ -25,5 +25,7 @@ function search(){
     }else{
         console.log(`Number not found!!${(found)}`);
     }
+
+    //console.log(utility.mergeSort(arr));
 }
 search();

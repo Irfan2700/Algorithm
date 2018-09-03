@@ -2,8 +2,8 @@ var utility = require('../utility/utility.js');
 
 function stopwatch(){
 
-    var arr = [1,2,9,5,7,6,3];
-    var strarr = ["abc","apple","bat","cat","mom","sasc","was","wqwe","fewq"];
+    var arr = [7,6,9,5,1,2,3];
+    var strarr = ["abc","apple","was","cat","mom","sasc","bat","wqwe","fewq"];
     
     console.log("For Number Array Binary Search : ");
     var start = utility.getCurrentTime();
@@ -25,6 +25,9 @@ function stopwatch(){
     var diff = utility.timeDifference(start,stop);
 
     console.log("Time Difference : "+diff);
+
+   // console.log(utility.insertionSort(strarr));
+
 
 }
 stopwatch();
