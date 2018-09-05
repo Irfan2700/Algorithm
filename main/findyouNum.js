@@ -7,8 +7,10 @@ function findtheNum() {
 
     var N = parseInt(args.N);
 
-    if(!(isNaN(N))){
-    utility.guessing(N,readlinesync);
-    }else{console.log("Invalid Input!!!")}
+    if (!(isNaN(N))) {
+        utility.guessing(N, readlinesync);
+    } else {
+        console.log("Invalid Input!!!")
+    }
 }
 findtheNum();

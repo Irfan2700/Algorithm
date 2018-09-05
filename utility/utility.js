@@ -1,4 +1,4 @@
-/**DEPENDENCIES & PACKAGES - Expect the nodejs, npm, vargs, readline, lodash to be installed
+/**DEPENDENCIES & PACKAGES - Expect the nodejs, npm, vargs, readline, readline-sync, lodash to be installed
  */
 
 /*********************************************************************************************************************
@@ -104,6 +104,7 @@ module.exports = {
         }
         // console.log(arr);
 
+        var a1 = [];
         var arr1 = [];
         console.log("The Anagrams are : ");
         // console.log(arr.length-1);
@@ -114,18 +115,23 @@ module.exports = {
                 var s2 = '' + parseInt(arr[j]);
                 if ((((s1.split('')).sort()).join()) === (((s2.split('')).sort()).join())) {   //check for anagram
 
-                    console.log(s1 + " and " + s2 + " are Anagram!!");
-                    arr1.push(parseInt(s1));        //pushing all anagram element into an array
+                    arr1.push(parseInt(s1)); 
+                    a1.push(parseInt(s1));
+                    a1.push(parseInt(s2));       //pushing all anagram element into an array
+
 
                 }
-
+                
 
             }
         }
 
+        console.log("The Anagram are..."+a1);
+        console.log('');
+        console.log('');
 
         console.log("The Pallendroms are : ");  
-
+        var a = [];
         for (var i = 0; i < arr1.length; i++) {     //checking for pallendrom
 
             var sum = 0, r;
@@ -142,10 +148,12 @@ module.exports = {
             }
 
             if (temp === sum) {             //compare original and reverse number
-                console.log(show + " is Pallindrom!!");
+                //console.log(show + " is Pallindrom!!");
+                a.push(parseInt(show));
             }
-
+            
         }
+        console.log("the Pallendrom are :.. "+a);
     },
 
     
@@ -183,7 +191,7 @@ module.exports = {
 
     },
 
-    binarySearchString: function (arr, first, last, string) {
+    binarySearchString: function (a, first, last, string) {
 
         /**
          * @description : To find a string from a given array of string and return its index position
@@ -195,10 +203,27 @@ module.exports = {
          */
 
         //var arr = this.binarySearchString(a);
-        if (isNaN(arr[0])) {
-            var n = arr.indexOf(string);    //return the index of the given array
-            return n;
+        var arr = this.bubbleSortString(a);     //sorting the array before apply any logic
+        var mid = 0;
+        if ((isNaN(arr[0]))) {             //checking that only string is enter
+            if (last >= first) {           
+
+                mid = Math.floor((last + first) / 2);   //mid of the particular iteration array
+
+                if (arr[mid] == string) return (mid);    //word found
+
+                if (arr[mid] > string) {
+                    return this.binarySearchString(arr, first, mid - 1, string); //string is in part of array greater than mid
+
+                } else {
+                    return this.binarySearchString(arr, mid + 1, last, string); //string is in part of array less than mid
+                }
+
+
+            }
+            return -1;
         }
+
     },
 
     getCurrentTime: function () {
@@ -427,14 +452,8 @@ module.exports = {
         m0 = m + (12 *x* (Math.round(14 - m) / 12)) - 2;
         d0 = (d + x + Math.round((31 * m0) / 12)) % 7;
 
-        // if(m == 1 || m == 2){
-        //     m0 = 12 - m;
-        // }
-        // else{
-        //     m0 = m - 2;
-        // }
-        // d0 = (d + Math.floor(((13*m0)-1)/5) + y + Math.floor(y/4) + Math.floor(c/4)-(2*c)) % 7
         return d0;
+         
     },
 
     celsiusToF: function (temp) {
@@ -542,6 +561,20 @@ module.exports = {
         }
 
         return sum;
+    },
+
+    power : function(n){
+
+        var pow = 0;
+        while(n>1){
+            if(n%2==0){
+                pow++;
+            }else {
+                return -1;
+            }
+            n /= 2;
+        }
+        return pow;
     },
 
     vendingmachine: function (amount, mNote) {

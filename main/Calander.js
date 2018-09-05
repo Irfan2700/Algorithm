@@ -11,6 +11,7 @@ function calander(){
    // c = parseInt(args.c);
 
     if(!(d === 0 || m === 0 || y === 0)){
+        if(parseInt(d)<32 || parseInt(m)<13){
 
     var day = utility.daysofweek(d,m,y);
 
@@ -34,7 +35,11 @@ console.log(day);
 
         default : console.log("Invalid day");
     }
+
+}else{console.log("Invalid Date !!!")}
 }else{console.log("Please enter the value of d(day), m(month) and y(year) which greater than 0 ...");}
+
+
     }catch(e)
     {console.log("Unexpected Error Occur.. please retry again!!..");
         }

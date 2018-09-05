@@ -10,17 +10,24 @@ function nibble() {
     if (!(isNaN(deci))) {
         var binval = (utility.toBinary(deci));
         
-        
-        var a = 8 - binval.length;
+       var a = 8 - binval.length;
         var s1 = '';
 
         switch (parseInt(a)) {
 
             case 1: s1 = '0' + binval; break;
 
-            case 2: s1 = '0' + '0' + binval;
+            case 2: s1 = '0' + '0' + binval;break;
 
-            case 3: s1 = '0' + '0' + '0' + binval;
+            case 3: s1 = '0' + '0' + '0' + binval;break;
+
+            case 4: s1 = '0' + '0' + '0' + '0' + binval;break;
+
+            case 5: s1 = '0' + '0' + '0' + '0' + '0' + binval;break;
+
+            case 6: s1 = '0' + '0' + '0' + '0' + '0' + '0' + binval;break;
+
+            case 7: s1 = '0' + '0' + '0' + '0' + '0' + '0' + '0' + binval;break;
 
             default: s1 = binval;
         }
@@ -29,6 +36,7 @@ function nibble() {
         console.log(" ");
 
         var s = s1.split('');
+
         var p1 = [];
         var p2 = [];
         var i;
@@ -57,6 +65,9 @@ function nibble() {
         console.log(" ");
         var nib = parseInt(str);
         console.log(utility.toDecimal(nib));
+        var res = utility.toDecimal(nib);
+
+        console.log(`The ${res} have power of 2 is : ${utility.power(res)}`);
     }
     else {
         console.log("Invalid Input!!");

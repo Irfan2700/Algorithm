@@ -12,19 +12,19 @@ function search(){
     } catch (e) {
         console.log("File Not found... Please recheck the file location..");
     }
-    var str = string.toString().split(' ');
+    var str = string.toString().split(',');
     console.log(string);
    
 
-    var searchit = readlineSync.question("Enter the Number want to search : ");
+    var searchit = readlineSync.question("Enter the word want to search : ");
 
     var found = utility.binarySearchString(str,0,str.length-1,searchit);
 
     if(found !== -1){
-        console.log(`Found!! at ${(found)}th position of the sorted array..`);
+        console.log(`Found!! at ${(found+1)}th position of the sorted array..`);
         
     }else{
-        console.log(`Number not found!!${(found)}`);
+        console.log(`Number not found!!${(found+1)}`);
     }
 
 }
