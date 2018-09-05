@@ -6,9 +6,12 @@ var utility = require('../utility/utility.js');
 
 function search(){
 
+    try {
     var string = fs.readFileSync('MyFile.txt','utf8');
     
-    
+    } catch (e) {
+        console.log("File Not found... Please recheck the file location..");
+    }
     var str = string.toString().split(' ');
     console.log(string);
    

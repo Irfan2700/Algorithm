@@ -1,19 +1,16 @@
-var readline = require('readline');
+var readlinesync = require('readline-sync');
 var utility = require('../utility/utility.js');
 
-var read = readline.createInterface({
-    input : process.stdin,
-    output : process.stdout
-});
 
 function anagram(){
 
-    read.question("Enter the first String : ", function(str1){
-        read.question("Enter the second String : ", function(str2){
+    var str1 = readlinesync.question("Enter the first String : ");
+    if(isNaN(str1)){
+    var str2 = readlinesync.question("Enter the second String : ");
+    if(isNaN(str2)){
 
-            utility.anagram(str1,str2);
-            read.close();
-        });
-    });
+        utility.anagram(str1,str2);
+    }else{console.log}
+    }
 }
 anagram();

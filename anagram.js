@@ -1,41 +1,55 @@
-var readlinesync = require('readline-sync');
+function processData(input) {
+    _ = require('lodash'); // global
+    input = input.trim().split('\n');
+    var N = Number(input.shift())
+    var arr = new Array(input.length)
 
-function atm(){
+    for (var i = 0; i < input.length; i++) {
+        var d = Number(input[i].substr(0, input[i].indexOf(' ')))
+        var m = Number(input[i].substr(input[i].indexOf(' ') + 1))
+        arr[i] = { d: d, m: m };
+    }
 
-    var amount = readlinesync.question("Enter the amount : ");
-    //var denominations = readlinnsync.question("Enter the value of  you Want : ");
+    var step = 0;
+    var ans = 0;
+    var used = [];
 
-    var arr = [1,2,5,10,50,100,500,1000];
-    var result = change(arr,amount,arr.length-1,0);
+    for (var i = 0; i < arr.length; i++) {
+        step += arr[i].m;
+        arr[i].pos = step;
+        used.push(arr[i]);
 
-    console.log(result);
+        for (var j = i - 1; j >= 0; j--) {
+            var diff = used[j + 1].pos - used[j + 1].d
+            var comp = used[j].pos - used[j].d + used[j + 1].m
 
-}
+            if (diff > 0 && comp > 0 && diff < ans && i > 1000) {
+                break
+            }
 
-function change(arr, amount, index, numCoins) {
-    
-    if (amount == 0)
-        {
-            return numCoins;
-        }
-        if (amount < arr[0])
-        {
-            return -1;
-        }
-        if (amount >= arr[index])
-        {
-            if(amount)
-            var tempCoins = parseInt(amount / arr[index]);
-            var tempAmount = amount - (tempCoins * arr[index]);
-            if (tempAmount == 0 || tempAmount >= arr[0])
-            {
-                amount = tempAmount;
-                numCoins += tempCoins;
+            if (diff > comp) {
+                used[j + 1].pos -= used[j].m;
+                used[j].pos += used[j + 1].m;
+                var tmp = used[j + 1]
+                used[j + 1] = used[j]
+                used[j] = tmp
+                ans = Math.max(ans, comp)
+            } else {
+                break;
             }
         }
-        index--;
 
-        return change(arr, amount, index, numCoins);
-    
+        ans = Math.max(ans, arr[i].pos - arr[i].d)
+        console.log(ans)
+    }
 }
-atm();
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+    processData(_input);
+});

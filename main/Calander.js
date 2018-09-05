@@ -4,13 +4,19 @@ const args = require('yargs').argv;
 
 function calander(){
 
+    try{
     d = parseInt(args.d);
     m = parseInt(args.m);
     y = parseInt(args.y);
+   // c = parseInt(args.c);
+
+    if(!(d === 0 || m === 0 || y === 0)){
 
     var day = utility.daysofweek(d,m,y);
 
-    switch(day){
+
+console.log(day);
+    switch(parseInt(day)){
 
         case 0: console.log(" Sunday");break;
 
@@ -28,6 +34,10 @@ function calander(){
 
         default : console.log("Invalid day");
     }
+}else{console.log("Please enter the value of d(day), m(month) and y(year) which greater than 0 ...");}
+    }catch(e)
+    {console.log("Unexpected Error Occur.. please retry again!!..");
+        }
 
 }
 calander();
